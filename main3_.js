@@ -7,8 +7,8 @@ ctx = Lienzo.getContext("2d");
 
 var width = screen.width
 
-new_width = screen.width
-new_height = screen.width
+new_width = screen.width -70
+new_height = screen.height -300
 
 if(width < 992){
     document.getElementById("mycanvas").width = new_width;
@@ -23,30 +23,28 @@ function my_touchstart(e){
     color = document.getElementById("color").value;
     grosor = document.getElementById("linea_gros").value;
 
-    mouse_x = e.touches[0].clientX - Lienzo.offLeft;
-    mouse_y = e.touches[0].clientY - Lienzo.offsetTop;
-
+    last_position_of_x = e.touches[0].clientX - Lienzo.offLeft;
+    last_position_of_y = e.touches[0].clientY - Lienzo.offsetTop;
 }
-
-
 
 Lienzo.addEventListener("touchmove", my_touchmove);
 function my_touchmove(e){
-    mouse_x = e.touches[0].clientX - Lienzo.offLeft;
-    mouse_y = e.touches[0].clientY - Lienzo.offsetTop;
+    current_position_of_x = e.touches[0].clientX - Lienzo.offLeft;
+    current_position_of_y = e.touches[0].clientY - Lienzo.offsetTop;
 
     ctx.beginPath();
     ctx.strokeStyle = color;
     ctx.lineWidth = grosor;
     ctx.moveTo(last_position_of_x,last_position_of_y);
-    ctx.lineTo(mouse_x,mouse_y)
+    ctx.lineTo(current_position_of_x,current_position_of_y)
     ctx.stroke();
 
-    last_position_of_y = mouse_y;   
-    last_position_of_x = mouse_x
+    last_position_of_y = current_position_of_y;   
+    last_position_of_x = current_position_of_x
     
 
     }  
+    
 function refresh(){
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     
