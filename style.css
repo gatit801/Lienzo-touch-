@@ -1,0 +1,35 @@
+.background{
+    background-image: url(Lienzo.png);
+    background-position: top ;
+    background-size: 950px 880px;
+    background-repeat: no-repeat;
+}
+
+h1{
+    color: red;
+    font-size: 40px;
+}
+
+#mycanvas{
+    border-width: 10px;
+    background-color: rgb(248, 225, 179);
+    border-style: ridge;
+
+
+}
+
+span{
+    font-size: 20px;
+}
+
+button{
+    background-color: rgb(93, 219, 93);
+    border: none;
+    color: white;
+    padding: padding;
+    font-size: 18;
+}
+
+input{
+    margin-right: 20px;
+}
