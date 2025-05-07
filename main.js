@@ -1,51 +1,45 @@
-var last_position_of_x, last_position_of_y;
-color = "red";
-grosor = 6;
-
 Lienzo = document.getElementById("mycanvas");
+
 ctx = Lienzo.getContext("2d");
 
-var width = screen.width
+color = "blue";
+relleno = "#0c16ac";
+grosor = "5";
 
-new_width = screen.width -70
-new_height = screen.height -300
+ctx.beginPath();
+ctx.strokeStyle = color;
+ctx.lineWidth = grosor;
+ctx.fillStyle = relleno;
+ctx.arc(700, 103, 40, 0, 2*Math.PI);
+ctx.stroke();
+ctx.fill();
 
-if(width < 992){
-    document.getElementById("mycanvas").width = new_width;
-    document.getElementById("mycanvas").height = new_height;
-    document.body.style.overflow
-}
 
-Lienzo.addEventListener("touchstart", my_touchstart);
-function my_touchstart(e){
-    console.log("my_touchstart")
-
+Lienzo.addEventListener("mousedown", my_mousedown);
+function my_mousedown(e){
     color = document.getElementById("color").value;
+    relleno = document.getElementById("color_relleno").value;
     grosor = document.getElementById("linea_gros").value;
-
-    last_position_of_x = e.touches[0].clientX - Lienzo.offLeft;
-    last_position_of_y = e.touches[0].clientY - Lienzo.offsetTop;
+    mouse_x = e.clientX - Lienzo.offsetLeft
+    mouse_y = e.clientY - Lienzo.offsetTop
+    circle(mouse_x,mouse_y)
 }
 
-Lienzo.addEventListener("touchmove", my_touchmove);
-function my_touchmove(e){
-    current_position_of_x = e.touches[0].clientX - Lienzo.offLeft;
-    current_position_of_y = e.touches[0].clientY - Lienzo.offsetTop;
-
+function circle(mouse_x,mouse_y){
     ctx.beginPath();
     ctx.strokeStyle = color;
     ctx.lineWidth = grosor;
-    ctx.moveTo(last_position_of_x,last_position_of_y);
-    ctx.lineTo(current_position_of_x,current_position_of_y)
+    ctx.fillStyle = relleno;
+    ctx.arc(mouse_x, mouse_y, 40, 0, 2*Math.PI);
     ctx.stroke();
+    ctx.fill();
 
-    last_position_of_y = current_position_of_y;   
-    last_position_of_x = current_position_of_x
-    
+}   
 
-    }  
-    
+
 function refresh(){
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     
-    }
+    ctx.clearRect(0,0, Lienzo.width, Lienzo.height);
+    
+}
+
